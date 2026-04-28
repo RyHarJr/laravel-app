@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cr;
+use App\Models\Berita;
 use Illuminate\Http\Request;
 
-class fakultas extends Controller
+class BeritaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $berita = Berita::all();
+        return view('berita.index', compact('berita'));
     }
 
     /**
@@ -34,7 +35,7 @@ class fakultas extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(cr $cr)
+    public function show(Berita $berita)
     {
         //
     }
@@ -42,7 +43,7 @@ class fakultas extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(cr $cr)
+    public function edit(Berita $berita)
     {
         //
     }
@@ -50,7 +51,7 @@ class fakultas extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, cr $cr)
+    public function update(Request $request, Berita $berita)
     {
         //
     }
@@ -58,7 +59,7 @@ class fakultas extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(cr $cr)
+    public function destroy(Berita $berita)
     {
         //
     }
