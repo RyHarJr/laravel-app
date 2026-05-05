@@ -22,7 +22,7 @@ class FakultasController extends Controller
      */
     public function create()
     {
-        //
+        return view('fakultas.create');
     }
 
     /**
@@ -30,7 +30,15 @@ class FakultasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_fakultas' => 'required|string|max:100',
+            'kode_fakultas' => 'required|string|max:5',
+            'dekan_fakultas' => 'required|string|max:100',
+        ]);
+
+        Fakultas::create($request->all());
+
+        return redirect()->route('fakultas.index')->with('success', 'Data fakultas berhasil ditambahkan.');
     }
 
     /**
@@ -44,24 +52,35 @@ class FakultasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Fakultas $fakultas)
+    public function edit(Fakultas $fakulta)
     {
-        //
+        $fakultas = $fakulta; // keep variable for view
+        return view('fakultas.edit', compact('fakultas'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Fakultas $fakultas)
+    public function update(Request $request, Fakultas $fakulta)
     {
-        //
+        $request->validate([
+            'nama_fakultas' => 'required|string|max:100',
+            'kode_fakultas' => 'required|string|max:5',
+            'dekan_fakultas' => 'required|string|max:100',
+        ]);
+
+        $fakulta->update($request->all());
+
+        return redirect()->route('fakultas.index')->with('success', 'Data fakultas berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Fakultas $fakultas)
+    public function destroy(Fakultas $fakulta)
     {
-        //
+        $fakulta->delete();
+
+        return redirect()->route('fakultas.index')->with('success', 'Data fakultas berhasil dihapus.');
     }
 }

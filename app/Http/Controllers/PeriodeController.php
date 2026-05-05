@@ -22,7 +22,7 @@ class PeriodeController extends Controller
      */
     public function create()
     {
-        //
+        return view('periode.create');
     }
 
     /**
@@ -30,7 +30,14 @@ class PeriodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tahun_akademik' => 'required|string|max:9',
+            'kode_smt' => 'required|string|max:1',
+        ]);
+
+        Periode::create($request->all());
+
+        return redirect()->route('periode.index')->with('success', 'Data periode berhasil ditambahkan.');
     }
 
     /**
@@ -46,7 +53,7 @@ class PeriodeController extends Controller
      */
     public function edit(Periode $periode)
     {
-        //
+        return view('periode.edit', compact('periode'));
     }
 
     /**
@@ -54,7 +61,14 @@ class PeriodeController extends Controller
      */
     public function update(Request $request, Periode $periode)
     {
-        //
+        $request->validate([
+            'tahun_akademik' => 'required|string|max:9',
+            'kode_smt' => 'required|string|max:1',
+        ]);
+
+        $periode->update($request->all());
+
+        return redirect()->route('periode.index')->with('success', 'Data periode berhasil diperbarui.');
     }
 
     /**
@@ -62,6 +76,8 @@ class PeriodeController extends Controller
      */
     public function destroy(Periode $periode)
     {
-        //
+        $periode->delete();
+
+        return redirect()->route('periode.index')->with('success', 'Data periode berhasil dihapus.');
     }
 }
