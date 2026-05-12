@@ -31,7 +31,7 @@ class ProdiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_prodi' => 'required|string|max:255',
+            'nama_prodi' => 'required|string|max:255|unique:prodis',
             'singkatan' => 'required|string|max:2',
             'kaprodi' => 'required|string|max:30',
             'fakultas_id' => 'required|exists:fakultas,id',
