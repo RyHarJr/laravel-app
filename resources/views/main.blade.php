@@ -25,7 +25,7 @@
     <!--begin::Accessibility Features-->
     <!-- Skip links will be dynamically added by accessibility.js -->
     <meta name="supported-color-schemes" content="light dark" />
-    <link rel="preload" href="../css/adminlte.css" as="style" />
+    <link rel="preload" href="{{ url('css/adminlte.css') }}" as="style" />
     <!--end::Accessibility Features-->
 
     <!--begin::Fonts-->
@@ -45,7 +45,7 @@
     <!--end::Third Party Plugin(Bootstrap Icons)-->
 
     <!--begin::Required Plugin(AdminLTE)-->
-    <link rel="stylesheet" href="../css/adminlte.css" />
+    <link rel="stylesheet" href="{{ url('css/adminlte.css') }}" />
     <!--end::Required Plugin(AdminLTE)-->
 </head>
 <!--end::Head-->
@@ -95,7 +95,7 @@
                                 <!--begin::Message-->
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img src="../assets/img/user1-128x128.jpg" alt="User Avatar"
+                                        <img src="{{ url('assets/img/user1-128x128.jpg') }}" alt="User Avatar"
                                             class="img-size-50 rounded-circle me-3" />
                                     </div>
                                     <div class="flex-grow-1">
@@ -117,7 +117,7 @@
                                 <!--begin::Message-->
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img src="../assets/img/user8-128x128.jpg" alt="User Avatar"
+                                        <img src="{{ url('assets/img/user8-128x128.jpg') }}" alt="User Avatar"
                                             class="img-size-50 rounded-circle me-3" />
                                     </div>
                                     <div class="flex-grow-1">
@@ -140,7 +140,7 @@
                                 <!--begin::Message-->
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img src="../assets/img/user3-128x128.jpg" alt="User Avatar"
+                                        <img src="{{ url('assets/img/user3-128x128.jpg') }}" alt="User Avatar"
                                             class="img-size-50 rounded-circle me-3" />
                                     </div>
                                     <div class="flex-grow-1">
@@ -205,14 +205,14 @@
                     <!--begin::User Menu Dropdown-->
                     <li class="nav-item dropdown user-menu">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img src="../assets/img/user2-160x160.jpg" class="user-image rounded-circle shadow"
-                                alt="User Image" />
+                            <img src="{{ url('assets/img/user2-160x160.jpg') }}"
+                                class="user-image rounded-circle shadow" alt="User Image" />
                             <span class="d-none d-md-inline">Alexander Pierce</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                             <!--begin::User Image-->
                             <li class="user-header text-bg-primary">
-                                <img src="../assets/img/user2-160x160.jpg" class="rounded-circle shadow"
+                                <img src="{{ url('assets/img/user2-160x160.jpg') }}" class="rounded-circle shadow"
                                     alt="User Image" />
                                 <p>
                                     Alexander Pierce - Web Developer
@@ -259,7 +259,7 @@
                 <!--begin::Brand Link-->
                 <a href="../index.html" class="brand-link">
                     <!--begin::Brand Image-->
-                    <img src="../assets/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                    <img src="{{ url('assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                         class="brand-image opacity-75 shadow" />
                     <!--end::Brand Image-->
                     <!--begin::Brand Text-->
@@ -417,6 +417,31 @@
                     },
                 });
             }
+        });
+    </script>
+
+    {{-- jquery --}}
+    <script src="https://code.jquery.com/jquery-4.0.0.slim.min.js"
+        integrity="sha256-8DGpv13HIm+5iDNWw1XqxgFB4mj+yOKFNb+tHBZOowc=" crossorigin="anonymous"></script>
+    {{-- sweetalert --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            var nama = $(this).data("nama");
+            event.preventDefault();
+            swal({
+                    title: `Apakah Anda yakin ingin menghapus data ${nama} ini?`,
+                    text: "If you delete this, it will be gone forever.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
         });
     </script>
     <!--end::OverlayScrollbars Configure-->

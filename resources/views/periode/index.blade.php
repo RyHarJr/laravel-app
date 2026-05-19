@@ -11,6 +11,7 @@
             <th>No</th>
             <th>Tahun Akademik</th>
             <th>Kode Semester</th>
+            <th>Aksi</th>
         </tr>
         @foreach ($result as $p)
             <tr>
@@ -22,6 +23,15 @@
                     <td>Genap</td>
                 @endif
 
+                <td>
+                    <a href="{{ route('periode.edit', $p->id) }}" class="btn btn-warning mb-2">Edit</a>
+                    <form method="POST" action="{{ route('periode.destroy', $p->id) }}">
+                        @csrf
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-rounded show_confirm" data-toggle="tooltip"
+                            title='Delete' data-nama='{{ $p->tahun_akademik }}'>Hapus</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </table>

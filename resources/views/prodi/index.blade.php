@@ -15,6 +15,7 @@
             <th>Nama Fakultas</th>
             <th>Kode Fakultas</th>
             <th>Dekan Fakultas</th>
+            <th>Aksi</th>
         </tr>
         @foreach ($prodis as $p)
             <tr>
@@ -25,6 +26,15 @@
                 <td>{{ $p->fakultas->nama_fakultas }}</td>
                 <td>{{ $p->fakultas->kode_fakultas }}</td>
                 <td>{{ $p->fakultas->dekan_fakultas }}</td>
+                <td>
+                    <a href="{{ route('prodi.edit', $p->id) }}" class="btn btn-warning mb-2">Edit</a>
+                    <form method="POST" action="{{ route('prodi.destroy', $p->id) }}">
+                        @csrf
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-rounded show_confirm" data-toggle="tooltip"
+                            title='Delete' data-nama='{{ $p->nama_prodi }}'>Hapus</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </table>
