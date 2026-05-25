@@ -23,8 +23,8 @@
                     <td>Genap</td>
                 @endif
 
-                <td>
-                    <a href="{{ route('periode.edit', $p->id) }}" class="btn btn-warning mb-2">Edit</a>
+                <td class="d-flex d-inline gap-2">
+                    <a href="{{ route('periode.edit', $p->id) }}" class="btn btn-warning">Edit</a>
                     <form method="POST" action="{{ route('periode.destroy', $p->id) }}">
                         @csrf
                         <input name="_method" type="hidden" value="DELETE">

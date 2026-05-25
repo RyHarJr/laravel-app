@@ -27,8 +27,8 @@
                 <td>{{ $p->nama_fakultas }}</td>
                 <td>{{ $p->kode_fakultas }}</td>
                 <td>{{ $p->dekan_fakultas }}</td>
-                <td>
-                    <a href="{{ route('fakultas.edit', $p->id) }}" class="btn btn-warning mb-2">Edit</a>
+                <td class="d-flex d-inline gap-2">
+                    <a href="{{ route('fakultas.edit', $p->id) }}" class="btn btn-warning">Edit</a>
 
                     <form method="POST" action="{{ route('fakultas.destroy', $p->id) }}">
                         @csrf

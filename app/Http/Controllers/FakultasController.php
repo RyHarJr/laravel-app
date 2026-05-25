@@ -64,7 +64,7 @@ class FakultasController extends Controller
     public function update(Request $request, Fakultas $fakulta)
     {
         $request->validate([
-            'nama_fakultas' => 'required|string|unique:fakultas|max:100',
+            'nama_fakultas' => 'required|string|unique:fakultas,nama_fakultas,' . $fakulta->id . '|max:100',
             'kode_fakultas' => 'required|string|max:5',
             'dekan_fakultas' => 'required|string|max:100',
         ]);
