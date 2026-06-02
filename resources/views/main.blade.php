@@ -207,7 +207,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img src="{{ url('assets/img/user2-160x160.jpg') }}"
                                 class="user-image rounded-circle shadow" alt="User Image" />
-                            <span class="d-none d-md-inline">Alexander Pierce</span>
+                            <span class="d-none d-md-inline">AHMAD RIZKI</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                             <!--begin::User Image-->
@@ -215,7 +215,7 @@
                                 <img src="{{ url('assets/img/user2-160x160.jpg') }}" class="rounded-circle shadow"
                                     alt="User Image" />
                                 <p>
-                                    Alexander Pierce - Web Developer
+                                    Rizki - Web Developer
                                     <small>Member since Nov. 2023</small>
                                 </p>
                             </li>
@@ -275,6 +275,12 @@
                     <!--begin::Sidebar Menu-->
                     <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation"
                         aria-label="Main navigation" data-accordion="false" id="navigation">
+                        <li class="nav-item">
+                            <a href={{ route('dashboard') }} class="nav-link">
+                                <i class="bi bi-speedometer2"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href={{ route('fakultas.index') }} class="nav-link">
                                 <i class="bi bi-bank2"></i>
