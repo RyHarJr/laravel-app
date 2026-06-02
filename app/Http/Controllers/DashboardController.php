@@ -11,7 +11,7 @@ class DashboardController extends Controller
     $prodiData = collect(DB::select('
             SELECT nama_prodi, COUNT(*) as TotalMahasiswa 
             FROM mahasiswas
-            LEFT JOIN prodis ON prodi_id = prodis.id
+            RIGHT JOIN prodis ON prodi_id = prodis.id
             GROUP BY nama_prodi
         '));
 
