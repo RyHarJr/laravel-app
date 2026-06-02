@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Prodi;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
   public function index()
   {
-    $prodiData = Prodi::withCount(['mahasiswa as mahasiswa_count' => function ($query) {
-      $query->selectRaw('count(*)');
-    }])->orderBy('nama_prodi')->get();
+    $prodiData = collect(DB::select('
+            SELECT nama_prodi, COUNT(*) as TotalMahasiswa 
+            FROM mahasiswas
+            LEFT JOIN prodis ON prodi_id = prodis.id
+            GROUP BY nama_prodi
+        '));
 
-    $categories = $prodiData->pluck('nama_prodi')->toArray();
-    $counts = $prodiData->pluck('mahasiswa_count')->map(fn($count) => (int) $count)->toArray();
+    $angkatanData = collect(DB::select('
+            SELECT LEFT(npm, 2) as angkatan, COUNT(*) as total
+            FROM mahasiswas
+            GROUP BY LEFT(npm, 2)
+        '));
 
-    return view('dashboard', compact('categories', 'counts'));
+    return view('dashboard', compact('prodiData', 'angkatanData'));
   }
 }
